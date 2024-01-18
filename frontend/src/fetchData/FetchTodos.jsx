@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { TodoItemContext } from "../contextes/TodoItemContext";
 
 const FetchTodos = () => {
-  const { todosData, setTodosData } = useContext(TodoItemContext);
+  const { setTodosData } = useContext(TodoItemContext);
 
   useEffect(() => {
     fetch("http://localhost:3064/api/todos", { method: "GET" })
@@ -10,10 +10,9 @@ const FetchTodos = () => {
       .then(({ success, result, error }) => {
         if (!success) throw error;
         else setTodosData(result);
-      });
+      })
+      .catch((err) => console.log(err));
   }, []);
-
-  console.log(todosData);
 
   return <></>;
 };

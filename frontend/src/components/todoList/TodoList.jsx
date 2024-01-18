@@ -14,7 +14,7 @@ const TodoList = () => {
           id={todoObj.id}
           todo={todoObj.task}
           done={todoObj.done}
-          updateTodosArray={(newTodosArray) => setTodosData(newTodosArray)}
+          updateTodosArray={setTodosData}
         />
       ))}
     </ul>

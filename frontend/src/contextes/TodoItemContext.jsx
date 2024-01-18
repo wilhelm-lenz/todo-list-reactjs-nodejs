@@ -3,11 +3,11 @@ import { createContext, useState } from "react";
 const TodoItemContext = createContext("");
 
 const TodoItemContextProvider = ({ children }) => {
-  const [todos, setTodos] = useState("");
+  const [task, setTask] = useState("");
   const [todosData, setTodosData] = useState([]);
   return (
     <TodoItemContext.Provider
-      value={{ todos, setTodos, todosData, setTodosData }}
+      value={{ task, setTask, todosData, setTodosData }}
     >
       {children}
     </TodoItemContext.Provider>
