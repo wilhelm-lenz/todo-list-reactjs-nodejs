@@ -1,12 +1,28 @@
 [
   {
+    "id": 1705605548124,
+    "task": "Mich anschauen",
+    "done": false
+  },
+  {
     "id": 1,
     "task": "Buch lesen",
     "done": false
   },
   {
     "id": 2,
-    "task": "Einkaufen gehen",
+    "task": "Wandern gehen",
     "done": false
+  },
+  {
+    "id": 3,
+    "task": "Todo App fertigstellen mit CRUD routes im backend",
+    "done": false
+  },
+  {
+    "id": 1705615483254,
+    "task": "Snowboard fahren",
+    "done": true,
+    "created_at": "2024-01-18"
   }
 ]

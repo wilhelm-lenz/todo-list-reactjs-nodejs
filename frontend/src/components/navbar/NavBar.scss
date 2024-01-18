@@ -1,0 +1,33 @@
+.section-profile {
+  color: #fff;
+  margin-block: 1.8rem 2.6rem;
+  border-block: 1px solid #9775fa;
+  padding-block: 1.6rem;
+}
+
+.section-todos-directions {
+  display: flex;
+  flex-direction: column;
+
+  .nav-link:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+
+  .nav-link:last-child {
+    margin-bottom: 5rem;
+  }
+
+  .nav-link.add-task-link {
+    color: #9775fa;
+    font-weight: 700;
+  }
+}
+
+.favorites {
+  color: #adb5bd;
+  margin-bottom: 5rem;
+}
+
+.teams {
+  color: #adb5bd;
+}

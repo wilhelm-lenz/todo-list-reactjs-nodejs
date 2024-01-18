@@ -1,3 +1,49 @@
-.done-todo {
-  text-decoration: line-through;
+.todo-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  padding-block: 2rem;
+
+  .todo {
+    margin-inline: 0.8rem;
+    margin-right: auto;
+    cursor: pointer;
+  }
+
+  .todo:hover {
+  }
+
+  .done-todo {
+    text-decoration: line-through;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.8rem;
+    width: 1.8rem;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .checkbox:hover svg {
+    cursor: pointer;
+  }
+
+  .checkbox.check-done {
+    background-color: #40c057;
+  }
+
+  .delete-todo svg {
+    transition: all 0.3s ease-out;
+    fill: #fff;
+  }
+
+  .delete-todo:hover svg {
+    cursor: pointer;
+    fill: #9775fa;
+  }
 }

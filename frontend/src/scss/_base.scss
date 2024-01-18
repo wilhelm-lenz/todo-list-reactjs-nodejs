@@ -11,9 +11,46 @@ html {
 body {
   box-sizing: border-box;
   line-height: 1;
+  height: 100vh;
+  font-size: 1.4rem;
+  // font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Inter-Regular";
+  line-height: 1;
+  background-color: #212529;
 }
 
 .container {
   max-width: 144rem;
   margin: 0 auto;
+}
+
+.todos-app-container {
+  color: #fff;
+  padding: 5% 10% 0;
+  overflow-y: scroll;
+  height: 100vh;
+  padding-bottom: 16rem;
+}
+
+a:link {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:not(.logo):visited {
+  color: #fff;
+}
+
+li {
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+}
+
+.heading-primary {
+  margin-bottom: 3rem;
 }

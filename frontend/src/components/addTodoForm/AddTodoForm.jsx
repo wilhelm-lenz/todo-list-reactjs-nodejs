@@ -15,21 +15,25 @@ const AddTodoForm = ({ updateTodosArray }) => {
       .then(({ success, result, error }) => {
         if (!success) throw error;
         else updateTodosArray(result);
+        setTask("");
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <div>
+    <div className="add-todos-wrapper">
       <input
         type="text"
         name="todo"
         id="todo"
+        className="add-todo"
         placeholder="Add new todo..."
         value={task}
         onChange={(event) => setTask(event.target.value)}
       />
-      <button onClick={addTodo}>Add Todo</button>
+      <button className="add-todo-button" onClick={addTodo}>
+        Add Todo
+      </button>
     </div>
   );
 };

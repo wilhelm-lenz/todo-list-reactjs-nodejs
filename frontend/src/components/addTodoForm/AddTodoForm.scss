@@ -1,0 +1,30 @@
+.add-todos-wrapper {
+  .add-todo {
+    padding: 0.8rem 0.8rem;
+    border: 1px solid #9775fa;
+    border-radius: 0.8rem 0 0 0.8rem;
+    margin: 0;
+    font-size: 1.8rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .add-todo-button {
+    padding: 0.8rem 0.8rem;
+    margin: 0;
+    border-left: none;
+    border: 1px solid #9775fa;
+    border-radius: 0 0.8rem 0.8rem 0;
+    font-size: 1.8rem;
+    background-color: #9775fa;
+    color: #fff;
+  }
+
+  .add-todo-button:hover {
+    background-color: #9775fa80;
+    color: #fff;
+    cursor: pointer;
+  }
+}
