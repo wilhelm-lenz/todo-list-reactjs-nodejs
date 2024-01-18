@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "task": "Buch lesen",
+    "done": false
+  },
+  {
+    "id": 2,
+    "task": "Einkaufen gehen",
+    "done": true
+  }
+]
