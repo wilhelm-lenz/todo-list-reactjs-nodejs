@@ -1,25 +1,25 @@
-import { Fragment, useContext } from "react";
-import AddTodoForm from "../../components/addTodoForm/AddTodoForm";
-import TodoList from "../../components/todoList/TodoList";
+import { useLocation } from "react-router-dom";
 import "./Dashboard.scss";
-import { TodoItemContext } from "../../contextes/TodoItemContext";
-import Header from "../../components/header/Header";
-import Main from "../../components/main/Main";
-import Logo from "../../components/logo/Logo";
-import NavBar from "../../components/navbar/NavBar";
-import TodosApp from "../todosApp/TodosApp";
+import TodayTodos from "../../components/todayTodos/TodayTodos";
+import IncomingTodos from "../../components/incomingTodos/IncomingTodos";
+import UpcomingTodos from "../../components/upcomingTodos/UpcomingTodos";
+import Filters from "../../components/filters/Filters";
 
-const Dashboard = () => {
-  const { setTodosData } = useContext(TodoItemContext);
-  return (
-    <>
-      <Main>
-        <TodosApp />
-        <AddTodoForm updateTodosArray={setTodosData} />
-        <TodoList />
-      </Main>
-    </>
-  );
+const TodosApp = () => {
+  const location = useLocation();
+  const locationString = location.pathname.split("/").slice(-1).join();
+
+  if (locationString === "today") {
+    return <TodayTodos />;
+  } else if (locationString === "entrance") {
+    return <IncomingTodos />;
+  } else if (locationString === "upcoming") {
+    return <UpcomingTodos />;
+  } else if (locationString === "filters") {
+    return <Filters />;
+  }
+
+  return <></>;
 };
 
-export default Dashboard;
+export default TodosApp;
