@@ -6,6 +6,7 @@ const {
   readJsonFilePromise,
   writeJsonFilePromise,
 } = require("./src/data-access/fileStytem");
+const { todoRouter } = require("./src/routes");
 
 const app = express();
 
@@ -21,52 +22,7 @@ app.use(logger("dev")); // Ersatz für die untere Middleware mit schöneren log 
 
 app.use(express.json());
 
-app.get("/api/todos", (_, res) => {
-  readJsonFilePromise("./data/todos-data.json")
-    .then((todos) => res.status(OK).json({ success: true, articles: todos }))
-    .catch((err) => {
-      console.log(err);
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ success: false, error: "Faild to load todos Server Error" });
-    });
-});
-
-app.post("/api/todos", (req, res) => {
-  const date = new Date(Date.now());
-  const day = date.getDate();
-  // const weekday = date.toLocaleString("default", { weekday: "long" });
-  // const monthNameShort = date.toLocaleString("default", { month: "short" });
-  const monthNumber = date.getMonth();
-  const fullYear = date.getFullYear();
-  // body wurde auf Zeile 15 geparses zu einem JavaScript Object
-  const newTodoTask = req.body.task;
-  const newTodo = {
-    id: Date.now(),
-    task: newTodoTask,
-    done: false,
-  };
-  if (!newTodo.created_at) {
-    newTodo.created_at = `${fullYear}-${monthNumber < 10 ? 0 : null}${
-      monthNumber + 1
-    }-${day}`;
-  }
-  console.log(newTodoTask);
-  readJsonFilePromise("./data/todos-data.json")
-    .then((todos) => [...todos, newTodo])
-    .then((newTodosArray) =>
-      writeJsonFilePromise("./data/todos-data.json", newTodosArray)
-    )
-    .then((newTodosArray) =>
-      res.status(OK).json({ success: true, articles: newTodosArray })
-    )
-    .catch((err) => {
-      console.log(err);
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ success: false, error: "Faild to load todos" });
-    });
-});
+app.use("/api/todos", todoRouter);
 
 app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
   const todoId = req.params.todoId;
