@@ -1,5 +1,7 @@
+const logger = require("morgan");
 const express = require("express");
 const cors = require("cors");
+const { body } = require("express-validator");
 const { readJsonFilePromise, writeJsonFilePromise } = require("./fsUtils");
 
 const app = express();
@@ -7,17 +9,18 @@ const app = express();
 const OK = 200;
 const INTERNAL_SERVER_ERROR = 500;
 
-app.use(cors());
-app.use((req, _, next) => {
-  console.log("New Request: ", req.method, req.url);
-  next();
-});
+app.use(cors()); // Cors Policy
+app.use(logger("dev")); // Ersatz für die untere Middleware mit schöneren log Anzeigen
+// app.use((req, _, next) => {
+//   console.log("New Request: ", req.method, req.url);
+//   next();
+// });
 
 app.use(express.json());
 
 app.get("/api/todos", (_, res) => {
   readJsonFilePromise("./todos-data.json")
-    .then((todos) => res.status(OK).json({ success: true, result: todos }))
+    .then((todos) => res.status(OK).json({ success: true, articles: todos }))
     .catch((err) => {
       console.log(err);
       res
@@ -52,7 +55,7 @@ app.post("/api/todos", (req, res) => {
       writeJsonFilePromise("./todos-data.json", newTodosArray)
     )
     .then((newTodosArray) =>
-      res.status(OK).json({ success: true, result: newTodosArray })
+      res.status(OK).json({ success: true, articles: newTodosArray })
     )
     .catch((err) => {
       console.log(err);
@@ -76,7 +79,7 @@ app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
       writeJsonFilePromise("./todos-data.json", newTodosArray)
     )
     .then((newTodosArray) =>
-      res.status(OK).json({ success: true, result: newTodosArray })
+      res.status(OK).json({ success: true, articles: newTodosArray })
     )
     .catch((err) => {
       console.log(err);
@@ -99,7 +102,7 @@ app.delete("/api/todos/:todoId", (req, res) => {
       writeJsonFilePromise("./todos-data.json", newTodosArray)
     )
     .then((newTodosArray) =>
-      res.status(OK).json({ success: true, result: newTodosArray })
+      res.status(OK).json({ success: true, articles: newTodosArray })
     )
     .catch((err) => {
       console.log(err);
@@ -107,6 +110,10 @@ app.delete("/api/todos/:todoId", (req, res) => {
         .status(INTERNAL_SERVER_ERROR)
         .json({ success: false, error: "Faild to delete todo" });
     });
+});
+
+app.use((_, res) => {
+  res.status(404).json({ success: false, error: "Route not found" });
 });
 
 const PORT = 3064;

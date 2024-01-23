@@ -12,9 +12,9 @@ const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
       method: "PATCH",
     })
       .then((res) => res.json())
-      .then(({ success, result, error }) => {
+      .then(({ success, articles, error }) => {
         if (!success) throw error;
-        else updateTodosArray(result);
+        else updateTodosArray(articles);
       })
       .catch((err) => console.log(err));
   };
@@ -24,15 +24,15 @@ const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then(({ success, result, error }) => {
+      .then(({ success, articles, error }) => {
         if (!success) throw error;
-        else updateTodosArray(result);
+        else updateTodosArray(articles);
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <li className="todo-item">
+    <li key={id} className="todo-item">
       <span
         className={`checkbox ${done ? "check-done" : null}`}
         onClick={() => updateTodo(id)}

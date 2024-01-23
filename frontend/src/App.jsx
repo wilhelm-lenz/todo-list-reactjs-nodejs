@@ -21,10 +21,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/app/today" />} />
             <Route path={`/app/today`} element={<Dashboard />} />
-            <Route path="/app/entrance" element={<TodosApp />} />
-            <Route path="/app/upcoming" element={<TodosApp />} />
-            <Route path="/app/filters" element={<TodosApp />} />
-            <Route path="/app/project" element={<TodosApp />} />
+            <Route path="/app/entrance" element={<Dashboard />} />
+            <Route path="/app/upcoming" element={<Dashboard />} />
+            <Route path="/app/filters" element={<Dashboard />} />
+            <Route path="/app/project" element={<Dashboard />} />
           </Routes>
         </div>
       </TodoItemContextProvider>

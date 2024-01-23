@@ -7,9 +7,9 @@ const FetchTodos = () => {
   useEffect(() => {
     fetch("http://localhost:3064/api/todos", { method: "GET" })
       .then((res) => res.json())
-      .then(({ success, result, error }) => {
+      .then(({ success, articles, error }) => {
         if (!success) throw error;
-        else setTodosData(result);
+        else setTodosData(articles);
       })
       .catch((err) => console.log(err));
   }, []);

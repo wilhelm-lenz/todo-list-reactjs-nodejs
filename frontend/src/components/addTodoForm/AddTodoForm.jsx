@@ -12,9 +12,9 @@ const AddTodoForm = ({ updateTodosArray }) => {
       body: JSON.stringify({ task }),
     })
       .then((res) => res.json())
-      .then(({ success, result, error }) => {
+      .then(({ success, articles, error }) => {
         if (!success) throw error;
-        else updateTodosArray(result);
+        else updateTodosArray(articles);
         setTask("");
       })
       .catch((err) => console.log(err));
