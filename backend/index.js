@@ -2,7 +2,10 @@ const logger = require("morgan");
 const express = require("express");
 const cors = require("cors");
 const { body } = require("express-validator");
-const { readJsonFilePromise, writeJsonFilePromise } = require("./fsUtils");
+const {
+  readJsonFilePromise,
+  writeJsonFilePromise,
+} = require("./src/data-access/fileStytem");
 
 const app = express();
 
@@ -19,7 +22,7 @@ app.use(logger("dev")); // Ersatz für die untere Middleware mit schöneren log 
 app.use(express.json());
 
 app.get("/api/todos", (_, res) => {
-  readJsonFilePromise("./todos-data.json")
+  readJsonFilePromise("./data/todos-data.json")
     .then((todos) => res.status(OK).json({ success: true, articles: todos }))
     .catch((err) => {
       console.log(err);
@@ -49,10 +52,10 @@ app.post("/api/todos", (req, res) => {
     }-${day}`;
   }
   console.log(newTodoTask);
-  readJsonFilePromise("./todos-data.json")
+  readJsonFilePromise("./data/todos-data.json")
     .then((todos) => [...todos, newTodo])
     .then((newTodosArray) =>
-      writeJsonFilePromise("./todos-data.json", newTodosArray)
+      writeJsonFilePromise("./data/todos-data.json", newTodosArray)
     )
     .then((newTodosArray) =>
       res.status(OK).json({ success: true, articles: newTodosArray })
@@ -68,7 +71,7 @@ app.post("/api/todos", (req, res) => {
 app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
   const todoId = req.params.todoId;
 
-  readJsonFilePromise("./todos-data.json")
+  readJsonFilePromise("./data/todos-data.json")
     .then((todos) => {
       const updatedTodos = todos.map((todo) =>
         todo.id.toString() === todoId ? { ...todo, done: !todo.done } : todo
@@ -76,7 +79,7 @@ app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
       return updatedTodos;
     })
     .then((newTodosArray) =>
-      writeJsonFilePromise("./todos-data.json", newTodosArray)
+      writeJsonFilePromise("./data/todos-data.json", newTodosArray)
     )
     .then((newTodosArray) =>
       res.status(OK).json({ success: true, articles: newTodosArray })
@@ -91,7 +94,7 @@ app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
 
 app.delete("/api/todos/:todoId", (req, res) => {
   const todoId = req.params.todoId;
-  readJsonFilePromise("./todos-data.json")
+  readJsonFilePromise("./data/todos-data.json")
     .then((todos) => {
       const todosWithoutDeletedTodo = todos.filter(
         (todo) => todo.id.toString() !== todoId
@@ -99,7 +102,7 @@ app.delete("/api/todos/:todoId", (req, res) => {
       return todosWithoutDeletedTodo;
     })
     .then((newTodosArray) =>
-      writeJsonFilePromise("./todos-data.json", newTodosArray)
+      writeJsonFilePromise("./data/todos-data.json", newTodosArray)
     )
     .then((newTodosArray) =>
       res.status(OK).json({ success: true, articles: newTodosArray })
