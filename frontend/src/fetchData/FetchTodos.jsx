@@ -4,14 +4,22 @@ import { TodoItemContext } from "../contextes/TodoItemContext";
 const FetchTodos = () => {
   const { setTodosData } = useContext(TodoItemContext);
 
+  const getAllTodos = async () => {
+    try {
+      const res = await fetch("http://localhost:3064/api/todos", {
+        method: "GET",
+      });
+      const data = await res.json();
+      const { success, articles, error } = data;
+      if (!success) throw error;
+      else setTodosData(articles);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    fetch("http://localhost:3064/api/todos", { method: "GET" })
-      .then((res) => res.json())
-      .then(({ success, articles, error }) => {
-        if (!success) throw error;
-        else setTodosData(articles);
-      })
-      .catch((err) => console.log(err));
+    getAllTodos();
   }, []);
 
   return <></>;

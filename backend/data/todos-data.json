@@ -1,10 +1,5 @@
 [
   {
-    "id": 1705605548124,
-    "task": "Mich anschauen",
-    "done": true
-  },
-  {
     "id": 1,
     "task": "Buch lesen",
     "done": true
@@ -12,12 +7,12 @@
   {
     "id": 2,
     "task": "Wandern gehen",
-    "done": false
+    "done": true
   },
   {
     "id": 3,
     "task": "Präsentation an Peter senden",
-    "done": true,
+    "done": false,
     "contact": "peter@schmidt.com",
     "tags": [
       "work",
@@ -26,15 +21,15 @@
     "link": "docs.google.com/slides/jfojasofds"
   },
   {
-    "id": 1706095602695,
-    "task": "dfsgsdfgsad",
-    "done": true,
+    "id": 1706103490538,
+    "task": "Fahrrad fahren",
+    "done": false,
     "created_at": "2024-01-24"
   },
   {
-    "id": 1706096052053,
-    "task": "sfsda",
-    "done": false,
+    "id": 1706103497006,
+    "task": "Einkaufen gehen",
+    "done": true,
     "created_at": "2024-01-24"
   }
 ]

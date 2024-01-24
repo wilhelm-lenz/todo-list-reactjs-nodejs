@@ -7,7 +7,6 @@
   .todo {
     margin-inline: 0.8rem;
     margin-right: auto;
-    cursor: pointer;
   }
 
   .todo:hover {
@@ -37,9 +36,9 @@
     background-color: #40c057;
   }
 
-  .delete-todo svg {
+  .delete-todo {
     transition: all 0.3s ease-out;
-    fill: #fff;
+    fill: #888;
   }
 
   .delete-todo:hover svg {
