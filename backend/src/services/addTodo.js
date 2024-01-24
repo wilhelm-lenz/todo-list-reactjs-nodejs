@@ -1,9 +1,9 @@
 const { saveAllTodos, loadAllTodos } = require("../data-access");
 
-const addTodo = (newTodo) => {
-  return loadAllTodos()
-    .then((todso) => [...todso, newTodo])
-    .then((newTodosArray) => saveAllTodos(newTodosArray));
+const addTodo = async (newTodo) => {
+  const todos = await loadAllTodos();
+  const newTodosArray = [...todos, newTodo];
+  await saveAllTodos(newTodosArray);
 };
 
 module.exports = {
