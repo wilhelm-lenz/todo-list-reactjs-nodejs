@@ -2,7 +2,7 @@ const { saveAllTodos } = require("../data-access");
 const { TodoService } = require("../services");
 const { OK, INTERNAL_SERVER_ERROR } = require("./httpStatusCodes");
 
-const patchAddTodoController = (req, res) => {
+const postAddTodoController = (req, res) => {
   const date = new Date(Date.now());
   const day = date.getDate();
   // const weekday = date.toLocaleString("default", { weekday: "long" });
@@ -21,7 +21,7 @@ const patchAddTodoController = (req, res) => {
       monthNumber + 1
     }-${day}`;
   }
-  console.log(newTodoTask);
+
   TodoService.getAllTodos()
     .then((todos) => [...todos, newTodo])
     .then((newTodosArray) => saveAllTodos(newTodosArray))
@@ -37,5 +37,5 @@ const patchAddTodoController = (req, res) => {
 };
 
 module.exports = {
-  patchAddTodoController,
+  postAddTodoController,
 };

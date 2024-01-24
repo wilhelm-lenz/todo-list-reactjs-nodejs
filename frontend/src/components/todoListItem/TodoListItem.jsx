@@ -35,14 +35,14 @@ const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
     <li key={id} className="todo-item">
       <span
         className={`checkbox ${done ? "check-done" : null}`}
-        onClick={() => updateTodo(id)}
+        onClick={() => updateTodo()}
         onMouseEnter={() => setIsShowCheck(true)}
         onMouseLeave={() => (!done ? setIsShowCheck(false) : null)}
       >
         {isShowCheck || done ? <CheckIcon /> : null}
       </span>
       <span className={`todo ${done ? "done-todo" : null}`}>{todo}</span>
-      <span className="delete-todo" onClick={() => deleteTodo(id)}>
+      <span className="delete-todo" onClick={() => deleteTodo()}>
         <TrashIcon />
       </span>
     </li>

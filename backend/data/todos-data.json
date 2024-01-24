@@ -2,7 +2,7 @@
   {
     "id": 1705605548124,
     "task": "Mich anschauen",
-    "done": false
+    "done": true
   },
   {
     "id": 1,
@@ -26,21 +26,15 @@
     "link": "docs.google.com/slides/jfojasofds"
   },
   {
-    "id": 1706042075163,
-    "task": "hfghdhfd",
-    "done": false,
-    "created_at": "2024-01-23"
-  },
-  {
-    "id": 1706042389006,
+    "id": 1706089838088,
     "task": "gdsgds",
     "done": false,
-    "created_at": "2024-01-23"
+    "created_at": "2024-01-24"
   },
   {
-    "id": 1706042452906,
-    "task": "gdsgds",
+    "id": 1706089839879,
+    "task": "gdsgsd",
     "done": false,
-    "created_at": "2024-01-23"
+    "created_at": "2024-01-24"
   }
 ]

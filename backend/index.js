@@ -24,29 +24,29 @@ app.use(express.json());
 
 app.use("/api/todos", todoRouter);
 
-app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
-  const todoId = req.params.todoId;
+// app.patch("/api/todos/:todoId/toggleDone", (req, res) => {
+//   const todoId = req.params.todoId;
 
-  readJsonFilePromise("./data/todos-data.json")
-    .then((todos) => {
-      const updatedTodos = todos.map((todo) =>
-        todo.id.toString() === todoId ? { ...todo, done: !todo.done } : todo
-      );
-      return updatedTodos;
-    })
-    .then((newTodosArray) =>
-      writeJsonFilePromise("./data/todos-data.json", newTodosArray)
-    )
-    .then((newTodosArray) =>
-      res.status(OK).json({ success: true, articles: newTodosArray })
-    )
-    .catch((err) => {
-      console.log(err);
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ success: false, error: "Faild to load todos" });
-    });
-});
+//   readJsonFilePromise("./data/todos-data.json")
+//     .then((todos) => {
+//       const updatedTodos = todos.map((todo) =>
+//         todo.id === todoId ? { ...todo, done: !todo.done } : todo
+//       );
+//       return updatedTodos;
+//     })
+//     .then((newTodosArray) =>
+//       writeJsonFilePromise("./data/todos-data.json", newTodosArray)
+//     )
+//     .then((newTodosArray) =>
+//       res.status(OK).json({ success: true, articles: newTodosArray })
+//     )
+//     .catch((err) => {
+//       console.log(err);
+//       res
+//         .status(INTERNAL_SERVER_ERROR)
+//         .json({ success: false, error: "Faild to load todos" });
+//     });
+// });
 
 app.delete("/api/todos/:todoId", (req, res) => {
   const todoId = req.params.todoId;
