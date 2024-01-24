@@ -9,7 +9,7 @@ todoRouter.post("/", TodosController.addTodo);
 
 todoRouter.patch("/:todoId/toggleDone", TodosController.patchToggleTodo);
 
-// todoRouter.delete("/:todoId", TodosController.deleteTodo);
+todoRouter.delete("/:todoId", TodosController.deleteTodo);
 
 module.exports = {
   todoRouter,

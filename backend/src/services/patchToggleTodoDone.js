@@ -6,7 +6,8 @@ const patchToggleTodoDone = async (todoId) => {
   const updatedTodos = todos?.map((todo) => {
     return todo.id.toString() === todoId ? { ...todo, done: !todo.done } : todo;
   });
-  saveAllTodos(updatedTodos);
+
+  await saveAllTodos(updatedTodos);
 
   return updatedTodos;
 };

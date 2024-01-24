@@ -1,4 +1,3 @@
-const { saveAllTodos } = require("../data-access");
 const {
   createdDateForCreatedAT,
 } = require("../helpers/createdDateForCreatedAt");
@@ -16,14 +15,9 @@ const postAddTodoController = async (req, res) => {
 
     createdDateForCreatedAT(newTodo);
 
-    const todos = await TodoService.getAllTodos();
-    const newTodosArray = [...todos, newTodo];
-
-    await saveAllTodos(newTodosArray);
+    const newTodosArray = await TodoService.addTodo(newTodo);
 
     res.status(OK).json({ success: true, articles: newTodosArray });
-
-    return newTodosArray;
   } catch (err) {
     console.log(err);
     res
