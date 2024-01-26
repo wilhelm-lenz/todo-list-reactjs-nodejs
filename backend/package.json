@@ -4,7 +4,8 @@
   "description": "'Checklists App to add, updated and delet todos'",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --ignore './data/todos-data.json' index.js"
+    "dev": "nodemon --ignore './data/todos-data.json' index.js",
+    "start": "node index.js"
   },
   "author": "Wilhelm Lenz",
   "license": "ISC",
