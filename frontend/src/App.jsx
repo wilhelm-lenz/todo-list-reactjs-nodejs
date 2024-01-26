@@ -2,11 +2,12 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { TodoItemContextProvider } from "./contextes/TodoItemContext";
-import FetchTodos from "./fetchData/fetchTodos";
+
 import TodosApp from "./pages/dashboard/Dashboard";
 import Header from "./components/header/Header";
 import Logo from "./components/logo/Logo";
 import NavBar from "./components/navbar/NavBar";
+import FetchTodos from "./fetchData/FetchTodos";
 
 function App() {
   return (
