@@ -3,18 +3,16 @@ import CheckIcon from "../../../public/images/CheckIcon";
 import { useEffect, useState } from "react";
 import TrashIcon from "../../../public/images/TrashIcon";
 import { useLocation } from "react-router-dom";
+import { backendUrl } from "../../../api/api";
 
 const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
   const [isShowCheck, setIsShowCheck] = useState(false);
 
   const postUpdateTodo = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:3064/api/todos/${id}/toggleDone`,
-        {
-          method: "PATCH",
-        }
-      );
+      const res = await fetch(`${backendUrl}/api/todos/${id}/toggleDone`, {
+        method: "PATCH",
+      });
       const data = await res.json();
       const { success, articles, error } = data;
       if (!success) throw error;
@@ -26,7 +24,7 @@ const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
 
   const deleteTodo = async () => {
     try {
-      const res = await fetch(`http://localhost:3064/api/todos/${id}`, {
+      const res = await fetch(`${backendUrl}/api/todos/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

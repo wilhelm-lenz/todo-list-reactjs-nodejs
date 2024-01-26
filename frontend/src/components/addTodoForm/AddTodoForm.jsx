@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import "./AddTodoForm.scss";
 import { TodoItemContext } from "../../contextes/TodoItemContext";
+import { backendUrl } from "../../../api/api";
 
 const AddTodoForm = ({ updateTodosArray }) => {
   const { task, setTask } = useContext(TodoItemContext);
 
   const postAddTodo = async () => {
     try {
-      const res = await fetch("http://localhost:3064/api/todos", {
+      const res = await fetch(backendUrl + "/api/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ task }),

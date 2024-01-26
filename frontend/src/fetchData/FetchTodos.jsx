@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
 import { TodoItemContext } from "../contextes/TodoItemContext";
+import { backendUrl } from "../../api/api";
 
 const FetchTodos = () => {
   const { setTodosData } = useContext(TodoItemContext);
 
   const getAllTodos = async () => {
     try {
-      const res = await fetch("http://localhost:3064/api/todos", {
+      const res = await fetch(backendUrl + "/api/todos", {
         method: "GET",
       });
       const data = await res.json();
