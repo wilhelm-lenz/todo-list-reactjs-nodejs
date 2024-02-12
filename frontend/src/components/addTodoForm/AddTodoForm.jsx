@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext } from "react";
 import "./AddTodoForm.scss";
 import { TodoItemContext } from "../../contextes/TodoItemContext";
@@ -8,16 +9,17 @@ const AddTodoForm = ({ updateTodosArray }) => {
 
   const postAddTodo = async () => {
     try {
-      const res = await fetch(backendUrl + "/api/todos", {
+      const res = await fetch(backendUrl + "/api/v1/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ task }),
       });
-      const data = await res.json();
-      const { success, articles, error } = data;
+      const result = await res.json();
+      console.log(result);
+      const { status, data, error } = result;
 
-      if (!success) throw error;
-      else updateTodosArray(articles);
+      if (!status) throw error;
+      else updateTodosArray(data.todo);
       setTask("");
     } catch (err) {
       console.log(err);

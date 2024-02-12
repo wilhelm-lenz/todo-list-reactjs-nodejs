@@ -1,23 +1,37 @@
-const { readJsonFilePromise, writeJsonFilePromise } = require("./fileStytem");
-const path = require("path");
+const mongoose = require("mongoose");
+const Todo = require("../models/Todo.js");
 
-const todosJsonFilePath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "data",
-  "todos-data.json"
-);
-
-const loadAllTodos = () => {
-  return readJsonFilePromise(todosJsonFilePath);
+exports.findAll = async () => {
+  const foundedTodos = await Todo.find();
+  return foundedTodos;
 };
 
-const saveAllTodos = (newTodosArray) => {
-  return writeJsonFilePromise(todosJsonFilePath, newTodosArray);
+exports.findOne = async (todoId) => {
+  const foundedOneTodo = await Todo.findById({
+    _id: mongoose.Types.ObjectId.createFromHexString(todoId),
+  });
+  return foundedOneTodo;
 };
 
-module.exports = {
-  loadAllTodos,
-  saveAllTodos,
+exports.insertOne = async (newTodo) => {
+  const insertedTodo = await Todo.create(newTodo);
+  return insertedTodo;
+};
+
+exports.updateOne = async (todoId, statusUpdate) => {
+  const updatedTodo = await Todo.findOneAndUpdate(
+    {
+      _id: mongoose.Types.ObjectId.createFromHexString(todoId),
+    },
+    { $set: { status: statusUpdate.status } },
+    { new: true }
+  );
+  return updatedTodo;
+};
+
+exports.deleteOne = async (todoId) => {
+  const foundedOneTodo = await Todo.findOneAndDelete({
+    _id: mongoose.Types.ObjectId.createFromHexString(todoId),
+  });
+  return foundedOneTodo;
 };

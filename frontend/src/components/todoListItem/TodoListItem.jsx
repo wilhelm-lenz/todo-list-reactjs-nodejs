@@ -13,10 +13,10 @@ const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
       const res = await fetch(`${backendUrl}/api/todos/${id}/toggleDone`, {
         method: "PATCH",
       });
-      const data = await res.json();
-      const { success, articles, error } = data;
+      const result = await res.json();
+      const { success, data, error } = result;
       if (!success) throw error;
-      else updateTodosArray(articles);
+      else updateTodosArray(data);
     } catch (err) {
       console.log(err);
     }
@@ -27,10 +27,10 @@ const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
       const res = await fetch(`${backendUrl}/api/todos/${id}`, {
         method: "DELETE",
       });
-      const data = await res.json();
-      const { success, articles, error } = data;
+      const result = await res.json();
+      const { success, data, error } = result;
       if (!success) throw error;
-      else updateTodosArray(articles);
+      else updateTodosArray(data);
     } catch (err) {
       console.log(err);
     }

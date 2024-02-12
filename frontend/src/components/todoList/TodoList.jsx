@@ -11,40 +11,46 @@ const TodoList = () => {
 
   const { todosData, setTodosData } = useContext(TodoItemContext);
   const [todos, setTodos] = useState([]);
+  useEffect(() => {
+    if (locationString === "today") {
+      const date = new Date(Date.now());
+      const day = date.getDate();
+      const monthNumber = date.getMonth();
+      const fullYear = date.getFullYear();
 
-  if (locationString === "today") {
-    const date = new Date(Date.now());
-    const day = date.getDate();
-    const monthNumber = date.getMonth();
-    const fullYear = date.getFullYear();
+      const todayDate = `${fullYear}-${monthNumber < 10 ? 0 : null}${
+        monthNumber + 1
+      }-${day}`;
+      console.log(todosData);
+      const filteredByDateToday = todosData?.filter((todo) => {
+        const date = new Date(todo.createdAt);
+        const day = date.getDate();
+        const monthNumber = date.getMonth();
+        const fullYear = date.getFullYear();
 
-    const todayDate = `${fullYear}-${monthNumber < 10 ? 0 : null}${
-      monthNumber + 1
-    }-${day}`;
+        const createdDate = `${fullYear}-${monthNumber < 10 ? 0 : null}${
+          monthNumber + 1
+        }-${day}`;
 
-    const filteredByDateToday = todosData.filter(
-      (todo) => todo?.created_at === todayDate
-    );
-
-    useEffect(() => {
+        return createdDate === todayDate;
+      });
       setTodos(filteredByDateToday);
-    }, [todosData]);
-  }
-  if (locationString === "entrance") {
-    useEffect(() => {
+    } else if (locationString === "entrance") {
       setTodos(todosData);
-    }, [todosData]);
-  }
+    }
+  }, [todosData]);
 
   return (
     <>
       <ul className="todo-list">
         {todos?.map((todoObj) => (
           <TodoListItem
-            key={todoObj.id}
-            id={todoObj.id}
-            todo={todoObj.task}
-            done={todoObj.done}
+            key={todoObj._id}
+            id={todoObj._id}
+            title={todoObj.title}
+            description={todoObj.description}
+            priotity={todoObj.priotity}
+            status={todoObj.status}
             updateTodosArray={setTodosData}
           />
         ))}

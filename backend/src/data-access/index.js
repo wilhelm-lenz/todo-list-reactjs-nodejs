@@ -1,8 +1,7 @@
-const { removeFile } = require("./fileStytem.js");
-const { loadAllTodos, saveAllTodos } = require("./todosDAO.js");
+const TodoDAO = require("./todosDAO.js");
+const UserDAO = require("./userDAO.js");
 
 module.exports = {
-  loadAllTodos,
-  saveAllTodos,
-  removeFile,
+  TodoDAO,
+  UserDAO,
 };
