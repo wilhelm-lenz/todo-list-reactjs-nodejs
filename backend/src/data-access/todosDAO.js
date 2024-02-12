@@ -18,12 +18,12 @@ exports.insertOne = async (newTodo) => {
   return insertedTodo;
 };
 
-exports.updateOne = async (todoId, statusUpdate) => {
+exports.updateOne = async (todoId, updateTodoStatus) => {
   const updatedTodo = await Todo.findOneAndUpdate(
     {
       _id: mongoose.Types.ObjectId.createFromHexString(todoId),
     },
-    { $set: { status: statusUpdate.status } },
+    { status: updateTodoStatus.status },
     { new: true }
   );
   return updatedTodo;

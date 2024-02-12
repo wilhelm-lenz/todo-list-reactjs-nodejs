@@ -63,11 +63,13 @@ exports.postAddTodoCtrl = async (req, res) => {
 exports.patchToggleTodoCtrl = async (req, res) => {
   try {
     const todoId = req.params.todoId;
-    const updateTodoData = req.body;
-    console.log("=======================", updateTodoData);
+    const updateStatus = req.body;
+    console.log(todoId);
+    console.log(updateStatus);
+    console.log("=======================", updateStatus);
     const updatedTodo = await TodoService.patchToggleTodoDone(
       todoId,
-      updateTodoData
+      updateStatus
     );
     console.log("?????????????????????????", updatedTodo);
     res.status(OK).json({ status: "success", data: { todo: updatedTodo } });

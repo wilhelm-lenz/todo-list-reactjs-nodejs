@@ -1,56 +1,50 @@
 import "./TodoListItem.scss";
 import CheckIcon from "../../../public/images/CheckIcon";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TrashIcon from "../../../public/images/TrashIcon";
 import { useLocation } from "react-router-dom";
 import { backendUrl } from "../../../api/api";
+import { TodoItemContext } from "../../contextes/TodoItemContext";
 
-const TodoListItem = ({ id, todo, done, updateTodosArray }) => {
+const TodoListItem = ({ id, title, status, updateTodosArray }) => {
+  const { todosData } = useContext(TodoItemContext);
   const [isShowCheck, setIsShowCheck] = useState(false);
-
-  const postUpdateTodo = async () => {
+  const patchUpdateTodo = async () => {
     try {
-      const res = await fetch(`${backendUrl}/api/todos/${id}/toggleDone`, {
+      const res = await fetch(`${backendUrl}/api/v1/todos/toggleDone/${id}`, {
         method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: status === "done" ? "open" : "done" }),
       });
       const result = await res.json();
-      const { success, data, error } = result;
-      if (!success) throw error;
-      else updateTodosArray(data);
-    } catch (err) {
-      console.log(err);
+      console.log(result);
+      const { status: responseStatus, data, error } = result;
+      if (responseStatus !== "success") throw error;
+      else console.log(data.todo);
+      const updatedTodos = todosData.map((todo) =>
+        todo._id === id ? { ...todo, status: result.data.todo.status } : todo
+      );
+      updateTodosArray(updatedTodos);
+    } catch (error) {
+      console.log(error);
     }
   };
-
-  const deleteTodo = async () => {
-    try {
-      const res = await fetch(`${backendUrl}/api/todos/${id}`, {
-        method: "DELETE",
-      });
-      const result = await res.json();
-      const { success, data, error } = result;
-      if (!success) throw error;
-      else updateTodosArray(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {}, [isShowCheck]);
 
   return (
     <li key={id} className="todo-item">
       <span
-        className={`checkbox ${done ? "check-done" : null}`}
-        onClick={() => postUpdateTodo()}
+        className={`checkbox ${status === "done" ? "check-done" : null}`}
+        onClick={() => patchUpdateTodo()}
         onMouseEnter={() => setIsShowCheck(true)}
-        onMouseLeave={() => (!done ? setIsShowCheck(false) : null)}
+        onMouseLeave={() => (status !== "done" ? setIsShowCheck(false) : null)}
       >
-        {isShowCheck || done ? <CheckIcon /> : null}
+        {isShowCheck || status === "done" ? <CheckIcon /> : null}
       </span>
-      <span className={`todo ${done ? "done-todo" : null}`}>{todo}</span>
+      <span className={`todo ${status === "done" ? "done-todo" : null}`}>
+        {title}
+      </span>
       <span className="delete-todo" onClick={() => deleteTodo()}>
-        {done ? <TrashIcon /> : null}
+        {status === "done" ? <TrashIcon /> : null}
       </span>
     </li>
   );

@@ -48,8 +48,8 @@ const TodoList = () => {
             key={todoObj._id}
             id={todoObj._id}
             title={todoObj.title}
-            description={todoObj.description}
-            priotity={todoObj.priotity}
+            // description={todoObj.description}
+            // priotity={todoObj.priotity}
             status={todoObj.status}
             updateTodosArray={setTodosData}
           />
