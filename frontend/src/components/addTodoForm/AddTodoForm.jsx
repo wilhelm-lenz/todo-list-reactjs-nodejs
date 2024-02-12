@@ -1,24 +1,28 @@
+/* eslint-disable react/prop-types */
 import { useContext } from "react";
 import "./AddTodoForm.scss";
 import { TodoItemContext } from "../../contextes/TodoItemContext";
 import { backendUrl } from "../../../api/api";
 
 const AddTodoForm = ({ updateTodosArray }) => {
-  const { task, setTask } = useContext(TodoItemContext);
+  const { todosData, title, setTitle } = useContext(TodoItemContext);
 
   const postAddTodo = async () => {
     try {
-      const res = await fetch(backendUrl + "/api/todos", {
+      const res = await fetch(backendUrl + "/api/v1/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ task }),
+        body: JSON.stringify({ title }),
       });
-      const data = await res.json();
-      const { success, articles, error } = data;
-
-      if (!success) throw error;
-      else updateTodosArray(articles);
-      setTask("");
+      const result = await res.json();
+      console.log(result);
+      const { status, data, error } = result;
+      console.log(data);
+      if (!status) throw error;
+      else console.log(data);
+      const newTodosArray = [...todosData, data.todo];
+      updateTodosArray(newTodosArray);
+      setTitle("");
     } catch (err) {
       console.log(err);
     }
@@ -32,8 +36,8 @@ const AddTodoForm = ({ updateTodosArray }) => {
         id="todo"
         className="add-todo"
         placeholder="Add new todo..."
-        value={task}
-        onChange={(event) => setTask(event.target.value)}
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
       />
       <button className="add-todo-button" onClick={postAddTodo}>
         Add Todo

@@ -1,15 +1,24 @@
-const { getAllTodos } = require("./getAllTodos.js");
-const { addTodo } = require("./addTodo.js");
-const { patchToggleTodoDone } = require("./patchToggleTodoDone.js");
-const { deleteTodo } = require("./deleteTodo.js");
+const { getAllTodos } = require("./todoService/getAllTodos");
+const { getOneTodo } = require("./todoService/getOneTodo");
+const { postAddTodo } = require("./todoService/postAddTodo");
+const { patchToggleTodoDone } = require("./todoService/patchToggleTodoDone");
+const { deleteOneTodo } = require("./todoService/deleteOneTodo");
+
+const { registerUser } = require("./userService/registerUser");
 
 const TodoService = {
   getAllTodos,
-  addTodo,
+  getOneTodo,
+  postAddTodo,
   patchToggleTodoDone,
-  deleteTodo,
+  deleteOneTodo,
+};
+
+const UserService = {
+  registerUser,
 };
 
 module.exports = {
   TodoService,
+  UserService,
 };

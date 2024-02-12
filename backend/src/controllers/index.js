@@ -1,15 +1,7 @@
-const { getTodosController } = require("./getTodosContorller");
-const { postAddTodoController } = require("./postAddTodoController");
-const { patchToggleTodoController } = require("./pachToggleTodoController");
-const { deleteTodoController } = require("./deleteTodoController");
-
-const TodosController = {
-  getTodos: getTodosController,
-  addTodo: postAddTodoController,
-  patchToggleTodo: patchToggleTodoController,
-  deleteTodo: deleteTodoController,
-};
+const TodosController = require("./TodosController.js");
+const UserController = require("./UserController.js");
 
 module.exports = {
   TodosController,
+  UserController,
 };

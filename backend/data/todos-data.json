@@ -12,7 +12,7 @@
   {
     "id": 3,
     "task": "Präsentation an Peter senden",
-    "done": false,
+    "done": true,
     "contact": "peter@schmidt.com",
     "tags": [
       "work",
@@ -35,6 +35,12 @@
   {
     "id": 1706256445558,
     "task": "Heute schlafen",
+    "done": true,
+    "created_at": "2024-01-26"
+  },
+  {
+    "id": 1706264477293,
+    "task": "gdgdfs",
     "done": false,
     "created_at": "2024-01-26"
   }

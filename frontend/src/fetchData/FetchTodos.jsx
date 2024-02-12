@@ -4,16 +4,16 @@ import { backendUrl } from "../../api/api";
 
 const FetchTodos = () => {
   const { setTodosData } = useContext(TodoItemContext);
-
   const getAllTodos = async () => {
     try {
-      const res = await fetch(backendUrl + "/api/todos", {
+      const res = await fetch(backendUrl + "/api/v1/todos", {
         method: "GET",
       });
-      const data = await res.json();
-      const { success, articles, error } = data;
-      if (!success) throw error;
-      else setTodosData(articles);
+      const result = await res.json();
+
+      const { status, data, error } = result;
+      if (!status) throw error;
+      else setTodosData(data.todos);
     } catch (err) {
       console.log(err);
     }
