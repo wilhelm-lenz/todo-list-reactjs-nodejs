@@ -1,14 +1,14 @@
 import "./TodoListItem.scss";
 import CheckIcon from "../../../public/images/CheckIcon";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import TrashIcon from "../../../public/images/TrashIcon";
-import { useLocation } from "react-router-dom";
 import { backendUrl } from "../../../api/api";
 import { TodoItemContext } from "../../contextes/TodoItemContext";
 
 const TodoListItem = ({ id, title, status, updateTodosArray }) => {
   const { todosData } = useContext(TodoItemContext);
   const [isShowCheck, setIsShowCheck] = useState(false);
+
   const patchUpdateTodo = async () => {
     try {
       const res = await fetch(`${backendUrl}/api/v1/todos/toggleDone/${id}`, {
@@ -17,14 +17,30 @@ const TodoListItem = ({ id, title, status, updateTodosArray }) => {
         body: JSON.stringify({ status: status === "done" ? "open" : "done" }),
       });
       const result = await res.json();
-      console.log(result);
+
       const { status: responseStatus, data, error } = result;
       if (responseStatus !== "success") throw error;
       else console.log(data.todo);
       const updatedTodos = todosData.map((todo) =>
-        todo._id === id ? { ...todo, status: result.data.todo.status } : todo
+        todo._id === id ? { ...todo, status: data.todo.status } : todo
       );
       updateTodosArray(updatedTodos);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteTodo = async () => {
+    try {
+      const res = await fetch(`${backendUrl}/api/v1/todos/${id}`, {
+        method: "DELETE",
+      });
+      const result = await res.json();
+      const { status: responseStatus, data, error } = result;
+      if (responseStatus !== "success") throw error;
+      else console.log(data.todo);
+      const todosWithoutDeleted = todosData.filter((todo) => todo._id !== id);
+      updateTodosArray(todosWithoutDeleted);
     } catch (error) {
       console.log(error);
     }

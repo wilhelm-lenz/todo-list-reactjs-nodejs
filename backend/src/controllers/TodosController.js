@@ -40,10 +40,7 @@ exports.getOneTodoCtrl = async (req, res) => {
 
 exports.postAddTodoCtrl = async (req, res) => {
   try {
-    // createdDateForCreatedAT(newTodo);
-
     const newTodo = await TodoService.postAddTodo(req.body);
-    console.log(newTodo);
     res.status(OK).json({
       status: "success",
       data: {
@@ -64,14 +61,10 @@ exports.patchToggleTodoCtrl = async (req, res) => {
   try {
     const todoId = req.params.todoId;
     const updateStatus = req.body;
-    console.log(todoId);
-    console.log(updateStatus);
-    console.log("=======================", updateStatus);
     const updatedTodo = await TodoService.patchToggleTodoDone(
       todoId,
       updateStatus
     );
-    console.log("?????????????????????????", updatedTodo);
     res.status(OK).json({ status: "success", data: { todo: updatedTodo } });
   } catch (error) {
     console.log(error);

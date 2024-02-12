@@ -21,7 +21,7 @@ const TodoList = () => {
       const todayDate = `${fullYear}-${monthNumber < 10 ? 0 : null}${
         monthNumber + 1
       }-${day}`;
-      console.log(todosData);
+
       const filteredByDateToday = todosData?.filter((todo) => {
         const date = new Date(todo.createdAt);
         const day = date.getDate();
