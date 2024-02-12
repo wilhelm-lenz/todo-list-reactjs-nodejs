@@ -4,8 +4,8 @@ const createdDateForCreatedAT = (newTodo) => {
   const monthNumber = date.getMonth();
   const fullYear = date.getFullYear();
 
-  if (!newTodo.created_at) {
-    newTodo.created_at = `${fullYear}-${monthNumber < 10 ? 0 : null}${
+  if (!newTodo.createdAt) {
+    newTodo.createdAt = `${fullYear}-${monthNumber < 10 ? 0 : null}${
       monthNumber + 1
     }-${day}`;
   }
