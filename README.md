@@ -56,6 +56,7 @@ Inbox Dashboard
 - JavaScript
 - React.js
 - Node.js
+- MongoDB
 - Mongoose
 - Express.js
 - Vite.js (Build Tool)
