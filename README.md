@@ -24,7 +24,7 @@ Please note: Todolisto is currently not responsive and only optimized for deskto
 
 ## Overview
 
-### How does the Todolist work?
+### How does the Todolisto work?
 
 - Initially, visitors see a dashboard where they can later sign in. Upon first loading, the Todos for the current date are displayed under the "Today" tab on the left side.
 - The dashboard is divided into two parts: the navigation on the left and the display of the Todos on the right.
@@ -87,9 +87,9 @@ Several important improvements are planned for the next development phase of Tod
 
 ### Useful Resources
 
-The following resources were particularly helpful in the development of the Todolist:
+The following resources were particularly helpful in the development of the Todolisto:
 
-- Open Color [@open color](https://yeun.github.io/open-color/) : This open-source color scheme, optimized for UI design, was a valuable aid for designing the user interface. Its range of harmonious colors enhanced the aesthetic appeal and user experience of the Todolist.
+- Open Color [@open color](https://yeun.github.io/open-color/) : This open-source color scheme, optimized for UI design, was a valuable aid for designing the user interface. Its range of harmonious colors enhanced the aesthetic appeal and user experience of the Todolisto.
 - NodeJS Documentation [@nodeJS](https://nodejs.org/docs/latest/api/) : This comprehensive resource for backend development provided detailed information on NodeJS functionalities. It was instrumental in streamlining the server-side development process and ensuring efficient implementation of backend logic.
 - ExpressJS Documentation [@expressJS](https://expressjs.com/) : Essential for understanding and implementing the ExpressJS framework, this documentation was critical for the development of robust and scalable server-side applications.
 - MongoDB Documentation [@mongoDB](https://www.mongodb.com/docs/) : The official MongoDB documentation was an indispensable resource for understanding and implementing database solutions. It offered comprehensive insights into MongoDB's NoSQL database structure, facilitating efficient data storage, retrieval, and management.
