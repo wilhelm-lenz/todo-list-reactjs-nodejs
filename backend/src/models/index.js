@@ -1,6 +1,6 @@
-const { User } = require("./User");
-const { Todo } = require("./Todo");
-
+const User = require("./User.js");
+const Todo = require("./Todo.js");
+console.log(User);
 module.exports = {
   User,
   Todo,

@@ -1,4 +1,5 @@
 const { OK, INTERNAL_SERVER_ERROR } = require("../data-access/httpStatusCodes");
+const { UserService } = require("../services/index.js");
 
 exports.postRegisterUserCtrl = async (req, res) => {
   try {
@@ -14,15 +15,15 @@ exports.postRegisterUserCtrl = async (req, res) => {
   }
 };
 
-exports.postLoginUserCtrl = async (req, res) => {
-  try {
-    const loggedInUser = await UserService.loginUser();
-  } catch (error) {
-    console.log(error);
-    res.status(INTERNAL_SERVER_ERROR).json({
-      status: "fail",
-      error,
-      message: error.message || "Could not login user",
-    });
-  }
-};
+// exports.postLoginUserCtrl = async (req, res) => {
+//   try {
+//     const loggedInUser = await UserService.loginUser();
+//   } catch (error) {
+//     console.log(error);
+//     res.status(INTERNAL_SERVER_ERROR).json({
+//       status: "fail",
+//       error,
+//       message: error.message || "Could not login user",
+//     });
+//   }
+// };

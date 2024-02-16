@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 3064;
 const serverListenToPort = () =>
   app.listen(PORT, () => console.log(`Server runs on Port ${PORT}`));
 
+// server and database connection setup
+console.log("Connecting to database...");
 mongoose
   .connect(DB, { dbName: "todolisto" })
   .then(() => {
@@ -25,5 +27,5 @@ mongoose
     console.log("Error connecting to database!");
     console.log(err);
     console.log("Server will not start. Aborting...");
-    process.exit(); // beende den node prozess (clean exit)
+    process.exit(); // end the node process  (clean exit)
   });

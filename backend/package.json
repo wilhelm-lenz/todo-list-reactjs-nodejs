@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "'Checklists App to add, updated and delet todos'",
   "main": "app.js",
+  "engines": {
+    "node": "18.18.0",
+    "npm": "9.8.1"
+  },
   "scripts": {
     "dev": "nodemon --ignore './data/todos-data.json' server.js",
     "start": "node server.js"
@@ -16,6 +20,7 @@
     "express-validator": "^7.0.1",
     "mongoose": "^8.1.1",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "validator": "^13.11.0"
   }
 }

@@ -12,5 +12,5 @@ exports.generateRandomSalt = () => {
 exports.hashPassword = (password, salt) => {
   if (!password || !salt)
     throw new Error("password and salt must be defined for hashing");
-  return hash(`${password}${salt}`);
+  return exports.hash(`${password}${salt}`);
 };

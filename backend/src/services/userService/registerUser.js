@@ -1,28 +1,21 @@
-const { User } = require("../../models/index");
-const { generateRandomSalt, hashPassword } = require("../../helpers/hash");
+const { User } = require("../../models/index.js");
+const { generateRandomSalt, hashPassword } = require("../../helpers/hash.js");
 
-// userInfo := { name*, email*, password*, bio, profilePictureUrl }
-exports.registerUser = async ({
-  name,
-  email,
-  password,
-  bio,
-  profilePictureUrl,
-}) => {
+exports.registerUser = async ({ username, email, password, bio }) => {
   const passwordSalt = generateRandomSalt();
   const passwordHash = hashPassword(password, passwordSalt);
   const user = new User({
-    name,
+    username,
     email,
     passwordHash,
     passwordSalt,
     bio,
-    profilePictureUrl,
+    profilePhoto,
   });
   await user.save();
   return userToProfileInfo(user);
 };
 
-function userToProfileInfo({ name, email, bio, profilePictureUrl }) {
-  return { name, email, bio, profilePictureUrl };
+function userToProfileInfo({ username, email, bio, profilePhoto }) {
+  return { username, email, bio, profilePhoto };
 }

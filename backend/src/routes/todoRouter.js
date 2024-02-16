@@ -1,5 +1,5 @@
 const express = require("express");
-const { TodosController } = require("../controllers");
+const { TodosController } = require("../controllers/index.js");
 
 const router = express.Router();
 
